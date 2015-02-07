@@ -6,6 +6,8 @@
 
 # Object Oriented Jukebox
 
+![jukebox drawing](https://s3-us-west-2.amazonaws.com/web-dev-readme-photos/oo-labs/jukebox.jpeg)
+
 ## Description
 
 In this lab, you'll be writing an Object Oriented Jukebox, with similar functionality to the first CLI Jukebox you built: it will introduce itself to the user and ask for input, and users should be able to ask for help, list available songs, play a song, and exit the program, all from the command line.
@@ -41,10 +43,6 @@ After that, your program should wait for input and respond to the following comm
 4. `exit` - This exists the program.
 
 Make the tests in `spec/jukebox_spec.rb` pass!
-
-## Note
-
-Don't reinvent the wheel! Since you've already written a pretty solid non-object oriented jukebox, steal your own code!
 
 ## Resources
 * [Practical Object-Oriented Design in Ruby](http://books.flatironschool.com/books/102) - [Chapter 1: Object-Oriented Design](http://books.flatironschool.com/books/102), page 26
