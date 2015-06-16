@@ -151,7 +151,7 @@ end
 
 ### `#play`
 
-Based on the next test, it seems tha the `play` method, when called with no arguments, asks the user what song they'd like to play. However, the failure we're getting is that the output should match `/Now Playing: Phoenix - 1901/`. I can infer from this that this method should in fact do three things: 1) ask what song the user would like to play, 2) receive input from the user, 3) play the song the user asked for. 
+Based on the next test, it seems that the `play` method, when called with no arguments, asks the user what song they'd like to play. However, the failure we're getting is that the output should match `/Now Playing: Phoenix - 1901/`. I can infer from this that this method should in fact do three things: 1) ask what song the user would like to play, 2) receive input from the user, 3) play the song the user asked for. 
 
 The line of the spec that says `jukebox.stub(:gets).and_return("1")` tells me that for the sake of this test, a call to `gets` is being stubbed and made to return `"1"`, which is why the artist and name of the first song is expected to be included in the output.
 
@@ -236,7 +236,9 @@ class Jukebox
 end
 ```
 
-Since we need our `play` method to work whether an argument is passed in or not, we need to create an optional argument by assigning it a default value in the method signature. Since we don't want a particular song to play by default, let's just make it `nil`. We also needed an if/else statement since we know the case when no argument was given already passed the test and we'll need some other logic to handle this other case.
+Since we need our `play` method to work whether an argument is passed in or not, we need to create an optional argument. This can be done by setting the argument to a default value in the method signature. Since we don't want a particular song to play by default, let's just make the default value `nil`. 
+
+We also need an if/else statement: we know the case when no argument was given already passed the test so we'll leave that as it was in the `else` portion (when `song == nil`),  and we'll need some other logic to handle the other case (when an argument got passed in).
 
 Now we're past the `ArgumentError`. We need to handle the case where an argument was passed in (when `song` is not `nil`). The logic for this is basically the same as what we needed for the case without an argument.
 
