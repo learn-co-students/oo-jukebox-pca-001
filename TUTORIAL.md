@@ -353,6 +353,8 @@ class Jukebox
     input = gets.strip
     if input == "list"
       list
+    elsif input == "help"
+      help
     end
   end
   
@@ -374,6 +376,8 @@ class Jukebox
     input = gets.strip
     if input == "list"
       list
+    elsif input == "help"
+      help
     elsif input == "play"
       play
     end
@@ -397,7 +401,9 @@ class Jukebox
     input = gets.strip
     if input == "list"
       list
-      
+    elsif input == "help"
+      help  
+
     # IF THE FIRST PART OF THE INPUT IS 'play'
     elsif input.split(" ").first == "play"
       # See if any argument was passed in
@@ -446,6 +452,8 @@ class Jukebox
       input = gets.strip
       if input == "list"
         list
+      elsif input == "help"
+        help
       elsif input.split(" ").first == "play"
         if input.split(" ")[1..-1].empty?
           play
@@ -489,6 +497,8 @@ class Jukebox
       input = get_input
       if input == "list"
         list
+      elsif input == "help"
+        help
       elsif input.split(" ").first == "play" 
         # This means an empty string gets passed to the play method if the user didn't enter any song, so the play method needed a small tweak to make this work.
         play(input.split(" ")[1..-1].join(" "))
