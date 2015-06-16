@@ -497,15 +497,10 @@ class Jukebox
 
     while input != 'exit'
       input = get_input
-      if input == "list"
-        list
-      elsif input == "help"
-        help
-      elsif input.split(" ").first == "play" 
-        # This means an empty string gets passed to the play method if the user didn't enter any song, so the play method needed a small tweak to make this work.
+      if input.split(" ").first == "play" 
         play(input.split(" ")[1..-1].join(" "))
-      elsif input == 'exit'
-        exit
+      else
+        help_list_or_exit(input)
       end
     end
   end
@@ -518,6 +513,10 @@ class Jukebox
   def get_input
     puts "What do you want to do?"
     gets.strip
+  end
+
+  def help_list_or_exit(command)
+    send(command)
   end
 
   def exit
