@@ -423,7 +423,7 @@ This gets all of our tests passing!
 
 So, our program passes the tests, but the real goal of programming is to build things that are actually usable. Let's run `bin/jukebox` to witness the current behavior of our jukebox. _Note: (If you get an error involving permissions when you try to execute the bin file, [use `chmod` to fix it](http://ss64.com/bash/chmod.html)._
 
-![A semi-functional jukebox](/Users/rose/Desktop/semi-functional-jukebox.png)
+![A semi-functional jukebox](images/semi-functional-jukebox.png)
 
 After the song plays, the program simply stops. In fact, it stops after any command that we enter. This is not the behavior we want.
 
@@ -465,7 +465,7 @@ end
 
 Now we have the functionality we want:
 
-![A fully functional jukebox](/Users/rose/Desktop/fully-functional-jukebox.png)
+![A fully functional jukebox](images/fully-functional-jukebox.png)
 
 # Refactoring
 
