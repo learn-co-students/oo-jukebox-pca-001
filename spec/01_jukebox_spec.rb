@@ -57,6 +57,14 @@ describe 'Jukebox' do
     end
   end
 
+  describe '#input' do 
+    it "is a setter to get a user's input and is a getter to retrieve a user's input" do 
+      jukebox.input = "play"
+      expect(jukebox.input).to eq("play")
+    end
+
+  end
+
   describe '#call' do
     it 'responds to a call method' do
       expect(jukebox).to respond_to(:call)
@@ -70,6 +78,23 @@ describe 'Jukebox' do
     end
   end
 
+  describe '#get_input' do 
+    it 'prints a prompt for input to the user and stores the user response' do 
+      jukebox.stub(:gets).and_return("help")
+      get_input_output = capture_stdout {jukebox.get_input}
+      expect(jukebox.input).to eq("help")
+    end
+  end
+
+  describe '#do_command' do 
+    it 'calls the get_input method and invokes the appropriate method depending on the input of the user' do 
+      jukebox.stub(:gets).and_return("help")
+      get_input_output = jukebox.get_input
+      do_input_output = capture_stdout { jukebox.do_command }
+      expect(do_input_output).to match(/^(?=.*help)(?=.*list)(?=.*play)(?=.*exit).+/m)
+    end
+  end
+
   describe '#list' do
     it 'lists the songs a user can play' do
       list_output = capture_stdout { jukebox.list }
@@ -80,30 +105,22 @@ describe 'Jukebox' do
   end
 
   describe '#play' do
-    context 'with no arguments' do
-      it 'asks the user what song they\'d like to play' do
-        jukebox.stub(:gets).and_return("1")
-        play_no_args_output = capture_stdout { jukebox.play }
-        expect(play_no_args_output).to match(/Now Playing: Phoenix - 1901/)
-      end
-      
-      it 'also accepts a song name' do
-        jukebox.stub(:gets).and_return("Phoenix - 1901")
-        play_no_args_output = capture_stdout { jukebox.play }
-        expect(play_no_args_output).to match(/Now Playing: Phoenix - 1901/)
-      end
+    it 'asks the user what song they\'d like to play' do
+      jukebox.stub(:gets).and_return("1")
+      play_output = capture_stdout { jukebox.play }
+      expect(play_output).to eq("Enter a song number or enter the artist and song title, as shown in the list above\nNow playing: Phoenix - 1901\n")
+    end
+    
+    it 'accepts a song name and plays that song' do
+      jukebox.stub(:gets).and_return("Phoenix - 1901")
+      play_output = capture_stdout { jukebox.play }
+      expect(play_output).to match("Enter a song number or enter the artist and song title, as shown in the list above\nNow playing Phoenix - 1901\n")
     end
 
-    context 'when given a song as an additional argument' do
-      it 'can take a song name as an argument' do
-        play_with_song_name_output = capture_stdout { jukebox.play("Phoenix - 1901") }
-        expect(play_with_song_name_output).to match(/Now Playing: Phoenix - 1901/)
-      end
-
-      it 'can take a human-readable index' do
-        play_with_song_num_output = capture_stdout { jukebox.play("1") }
-        expect(play_with_song_num_output).to match(/Now Playing: Phoenix - 1901/)
-      end
+    it 'accepts a song number and plays that song' do 
+      jukebox.stub(:gets).and_return("2")
+      play_output = capture_stdout { jukebox.play }
+      expect(play_output).to match("Enter a song number or enter the artist and song title, as shown in the list above\nNow playing: Tokyo Police Club - Wait Up\n")
     end
   end
 end
