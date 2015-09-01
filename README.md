@@ -11,8 +11,8 @@ In this lab, you'll be writing an object oriented jukebox. Your jukebox will int
 ## Instructions
 
 * Take a look at `bin/jukebox`. This file is run by typing `ruby bin/jukebox`. Note that the file requires `lib/jukebox.rb`. 
-* Your `Jukebox` class should accept a list of songs upon initialization, and you need an `attr_accessor` for sogns. The `initialize` methods should set an `@songs` intance variable equal to the songs array that comes in as an argument.
-* `Jukebox` instances should respond to a `.call` method. This method is being invoked in the `bin` file, which, you might remember, is responsible for running the code in a command line app. The `.call` method should aggregate the other methods you will write and be resonsible for enacting the program. We'll come back to this method in a bit. 
+* Your `Jukebox` class should accept a list of songs upon initialization, and you need an `attr_accessor` for songs. The `initialize` methods should set an `@songs` instance variable equal to the songs array that comes in as an argument.
+* `Jukebox` instances should respond to a `.call` method. This method is being invoked in the `bin` folder, which, you might remember, is responsible for running the code in a command line app. The `.call` method should aggregate the other methods you will write and be responsible for executing the program. We'll come back to this method in a bit. 
 * Write a method, `.help` that puts out the list of commands to the terminal. The commands are: 
     * help 
     * list
