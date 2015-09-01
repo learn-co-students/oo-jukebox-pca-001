@@ -74,7 +74,7 @@ describe 'Jukebox' do
   describe '#help' do
     it 'prints the available commands' do
       help_output = capture_stdout { jukebox.help }
-      expect(help_output).to match(/^(?=.*help)(?=.*list)(?=.*play)(?=.*exit).+/m)
+      expect(help_output).to include("help" && "list" && "play" && "exit")
     end
   end
 
@@ -91,7 +91,7 @@ describe 'Jukebox' do
       jukebox.stub(:gets).and_return("help")
       get_input_output = jukebox.get_input
       do_input_output = capture_stdout { jukebox.do_command }
-      expect(do_input_output).to match(/^(?=.*help)(?=.*list)(?=.*play)(?=.*exit).+/m)
+      expect(do_input_output).to include("help" && "list" && "play" && "exit")
     end
   end
 
