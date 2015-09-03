@@ -1,75 +1,74 @@
 class Jukebox
-  attr_reader :songs
-  attr_accessor :input
+
+  attr_accessor :songs, :input
 
   def initialize(songs)
     @songs = songs
-    @input = ''
+  end
+
+  def call
+    welcome
+    while self.input != "exit"
+      do_command
+    end
+    puts "goodbye"
+  end
+
+  def welcome
+    puts "Welcome to the Jukebox! Type 'help' to see the list of available commands"
   end
 
   def help
-    puts "You can really only do a couple of things, kid:"
-    puts "'play' to get a list of songs to play"
-    puts "'help' to get help (but you already knew that)"
-    puts "'exit' to get the heck outta here"
-    puts "'list' see the songs you can play"
+    puts "This list of commands are:"
+    puts "help"
+    puts "list"
+    puts "play"
+    puts "exit"
   end
 
   def list
     self.songs.each_with_index do |song, i|
-      puts "#{i+1}. #{song}"
+      puts "#{i + 1}. #{song}"
     end
   end
 
-  def play(song=nil)
-    if song
-      if song.to_i.to_s == song
-        puts "Now Playing: #{self.songs[song.to_i-1] || 'Nothing'}"
-      elsif self.songs.map {|s| s.downcase}.include?(song.downcase)
-        printable_song = self.songs.detect {|s| s.downcase == song.downcase}
-        puts "Now Playing: #{printable_song}"
-      else
-        puts "Sorry, I don't know that song."
-      end
+  def get_input
+    puts "Enter a command:"
+    self.input = gets.chomp.downcase
+  end
+
+  def do_command
+    get_input
+    case self.input
+    when "help"
+      help
+    when "list"
+      list
+    when "play"
+      play
     else
-      self.list
-      puts "What song?"
-      play(gets.downcase.strip)
+      "please enter a valid command."
     end
   end
 
-  def do_command(command)
-    song = nil
-    if command.split.size > 1
-      split_command = command.split
-      command = split_command[0]
-      song = split_command[1..-1].map {|s| s.downcase}.join(' ')
-    end
+  def get_song
+    puts "Enter a song number or enter the artist and song title, as shown in the list above"
+    gets.chomp
+  end
 
-    case command
-    when 'play'
-      if song
-        self.play(song)
-      else
-        self.play
+  def play
+    response = get_song
+    if songs.include?(response) 
+      songs.each do |song|
+        if song == response
+          puts "Now playing #{song}"
+        end
       end
-    when 'list'
-      self.list
-    when 'help'
-      self.help
-    when 'exit'
-      puts "Bye!"
-    else
-      puts "I don't understand..."
+    elsif (0..(songs.length - 1)).include?(response.to_i)
+      puts "Now playing: #{songs[response.to_i - 1]}"
+    else 
+      puts "please enter a valid title or number"
     end
   end
 
-  def call
-    puts "Hello!"
-    while self.input != 'exit'
-      print 'Enter a command: '
-      self.input = gets.downcase.strip
-      self.do_command(self.input)
-    end
-  end
 end
