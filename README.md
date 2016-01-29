@@ -32,4 +32,4 @@ In this lab, you'll be writing an object oriented jukebox. Your jukebox will int
 **Top-Tip:** Interact with your app to get it working properly! Run the app with `ruby bin/jukebox` in the terminal to checkout it's functionality as you go. Pair running the app with running the test suite and reading the test output. Going back and forth between the two is a good workflow. 
 
 
-<a href='https://learn.co/lessons/oo-jukebox' data-visibility='hidden'>View this lesson on Learn.co</a>
+<p data-visibility='hidden'>View <a href='https://learn.co/lessons/oo-jukebox' title='Object Oriented Jukebox'>Object Oriented Jukebox</a> on Learn.co and start learning to code for free.</p>
